@@ -9,18 +9,19 @@
             {{ $value . ' ' . $key }},
           @endforeach
         "
-        data-sizes="(max-width: 1023px) {{ $data['max-width-mobile'] }}, {{ $data['max-width'] }}"
+        data-sizes="(max-width: 1023px) 100vw, {{ $data['max-width'] }}"
       @else
         srcset="
           @foreach($data['srcset'] as $key => $value)
             {{ $value . ' ' . $key }},
           @endforeach
         "
-        sizes="(max-width: 1023px) {{ $data['max-width-mobile'] }}, {{ $data['max-width'] }}"
+        sizes="(max-width: 1023px) 100vw, {{ $data['max-width'] }}"
       @endif
     />
     <img
       class="@if(!$data['no-lazy']){{ 'lazy' }}@endif {{ $data['class'] }}"
+      @if ($data['no-lazy']) loading="eager" @endif
       width="150"
       height="150"
       alt="{{ $data['alt'] }}"
@@ -41,7 +42,7 @@
           @endforeach
         "
       @endif
-      data-sizes="(max-width: 1023px) {{ $data['max-width-mobile'] }}, {{ $data['max-width'] }}"
+      data-sizes="(max-width: 1023px) 100vw, {{ $data['max-width'] }}"
     >
   </picture>
 </div>

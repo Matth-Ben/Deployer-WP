@@ -52,6 +52,7 @@ if (function_exists('acf_add_local_field_group')) {
 }
 
 require_once dirname(__DIR__) . '/resources/blocs-setup.php';
+require_once dirname(__DIR__) . '/resources/sync-acf.php';
 
 function remove_gutenberg_styles() {
   wp_dequeue_style( 'wp-block-library' );
@@ -122,6 +123,17 @@ function dc_allowed_block_types ($allowed_block_types, $editor_context) {
 add_filter( 'allowed_block_types_all', 'dc_allowed_block_types', 10, 2 );
 
 /**
+* Change slug to camel case
+*/
+function toCamelCase($string) {
+  return preg_replace_callback(
+    '/[-_](.)/',
+    function($matches) {
+      return strtoupper($matches[1]);
+    }, $string);
+}
+
+/**
 * Add a custom endpoint to access TwitterFeed data
 */
 // require_once dirname(__DIR__) . '/resources/TwitterFeed.php';
@@ -136,7 +148,7 @@ add_filter( 'allowed_block_types_all', 'dc_allowed_block_types', 10, 2 );
 /**
 * Add menu location
 */
-// function wpb_custom_new_menu() {
-//     register_nav_menu('footer_navigation',__( 'Footer navigation' ));
-// }
-// add_action( 'init', 'wpb_custom_new_menu' );
+function wpb_custom_new_menu() {
+    register_nav_menu('footer_navigation',__( 'Footer' ));
+}
+add_action( 'init', 'wpb_custom_new_menu' );

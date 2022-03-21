@@ -5,6 +5,7 @@ export default class Block {
 
     this.bindMethods()
     this.getElems()
+    this.init()
     this.events()
   }
 
@@ -14,6 +15,8 @@ export default class Block {
 
   getElems() {}
 
+  init() {}
+
   events() {}
 
   destroy() {}
@@ -21,6 +24,8 @@ export default class Block {
   resize() {}
 
   scroll() {}
+
+  inView() {}
 
   update() {}
 }
