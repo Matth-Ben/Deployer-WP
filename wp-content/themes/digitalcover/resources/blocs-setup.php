@@ -77,7 +77,6 @@ add_action('acf/init', function () {
               )
             ),
           ),
-          'enqueue_style' => get_template_directory_uri() . "/views/admin/${slug}/${slug}.css",
         ];
 
         acf_register_block($datas);
